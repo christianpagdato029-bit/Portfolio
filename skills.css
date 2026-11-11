@@ -1,0 +1,74 @@
+#skills {
+ position: relative;
+  z-index: 1;
+  min-height: 100vh;
+ scroll-margin-top: 90px;}
+
+.skills {font-size: clamp(1.25rem, 0.8rem + 2vw, 1.875rem);
+margin:auto;
+margin:20px;
+position: relative;
+font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+   text-transform: uppercase;
+  letter-spacing: .35em;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(220, 38, 38, .55);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .featured::after {
+      animation: flare linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+ 
+@keyframes flare {
+  from { transform: translateX(-50%) scaleX(0); opacity: 0; }
+  to   { transform: translateX(-50%) scaleX(1); opacity: 1; }
+}
+
+.kahon {display:grid;
+grid-template-columns:repear(auto-fit, minmax(500px, 1fr));
+margin:auto;
+gap:20px;
+}
+
+.kahon1 {margin:auto;
+background:black;
+width:min(310px, 90%);
+padding:20px;}
+
+i {display:flex;
+justify-content:center;}
+
+.html {text-align:center;
+font-size: clamp(1.5rem, 4vw, 30px);}
+
+.kahon1 li {font-size: clamp(14px, 3vw, 20px);
+margin:20px;}
+
+.kahon2 {margin:auto;
+background:black;
+width:min(310px, 90%);
+padding:20px;}
+
+.css {text-align:center;
+font-size: clamp(1.5rem, 4vw, 30px);}
+
+.kahon2 li {font-size: clamp(14px, 3vw, 20px);
+margin:20px;}
+
+.kahon3 {margin:auto;
+background:black;
+width:min(310px, 90%);
+padding:20px;}
+
+.javascript {text-align:center;
+font-size: clamp(1.5rem, 4vw, 30px);}
+
+.kahon3 li {font-size: clamp(14px, 3vw, 20px);
+margin:20px;}

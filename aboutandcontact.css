@@ -1,0 +1,258 @@
+#about {
+ position: relative;
+  z-index: 1;
+  min-height: 50vh;
+ scroll-margin-top: 90px;}
+
+ .container-about {margin:auto;
+padding-top:100px;
+width:min(1010px, 90%);}
+
+ .about {margin:auto;
+margin:20px;
+font-size: clamp(1.25rem, 0.8rem + 2vw, 1.875rem);
+ position: relative;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+text-transform: uppercase;
+  letter-spacing: .35em;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(220, 38, 38, .55);}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .container-about .about::after {
+      animation: aboutFlare linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+ 
+@keyframes aboutFlare {
+  from { transform: translateX(-50%) scaleX(0); opacity: 0; }
+  to   { transform: translateX(-50%) scaleX(1); opacity: 1; }
+}
+
+#about p {text-align:center;
+font-size: clamp(14px, 3vw, 20px);
+ position: relative;
+  isolation: isolate;
+  overflow: hidden;
+line-height: 1.9;
+  color: #c4c4d0;
+  background: linear-gradient(180deg, rgba(18, 18, 24, .92), rgba(8, 8, 12, .96));
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-block: clamp(10px, 2.2vw, 20px) solid #000;   /* letterbox bars */
+  border-radius: 6px;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, .8),
+    0 0 0 1px rgba(0, 0, 0, .6),
+    0 0 50px rgba(220, 38, 38, .12);
+  transition: border-color .4s, box-shadow .4s;}
+
+  #about p:hover {
+  border-color: rgba(220, 38, 38, .45);
+  box-shadow:
+    0 30px 80px -20px rgba(0, 0, 0, .9),
+    0 0 40px rgba(220, 38, 38, .2),
+    0 0 80px rgba(124, 58, 237, .14);
+}
+
+#about  p::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, .55)),
+    linear-gradient(110deg, rgba(220, 38, 38, .14), transparent 45%, rgba(124, 58, 237, .16));
+}
+
+#about  p::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .08;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    #about .container-about p {
+      animation: aboutReveal linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 55%;
+    }
+  }
+}
+ 
+@keyframes aboutReveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+#contact {
+ position: relative;
+  z-index: 1;
+  min-height: 50vh;
+ scroll-margin-top: 90px;}
+
+ .container-contact {margin:auto;
+padding:20px;
+width:min(1010px, 90%);
+border-bottom:5px solid white;
+}
+
+.contact {
+    margin:auto;
+font-size: clamp(1.25rem, 0.8rem + 2vw, 1.875rem);
+margin:20px;
+position: relative;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+text-transform: uppercase;
+  letter-spacing: .35em;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(220, 38, 38, .55);}
+
+  @media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .container-about .about::after {
+      animation: aboutFlare linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+ 
+@keyframes aboutFlare {
+  from { transform: translateX(-50%) scaleX(0); opacity: 0; }
+  to   { transform: translateX(-50%) scaleX(1); opacity: 1; }
+}
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px clamp(24px, 6vw, 100px);
+}
+
+.icons a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+  padding: 8px 4px;
+  overflow-wrap: anywhere;
+  color: #e8e8ee;
+  text-decoration: none;
+}
+
+.container-about {
+  padding-top: clamp(48px, 10vw, 100px);
+}
+
+/* ---------- Icons ---------- */
+.container-contact {
+  --icon-size: 1.6rem;   /* palitan ito para palakihin o paliitin ang lahat */
+}
+
+.container-contact a {
+  gap: 14px;
+}
+
+.container-contact a i {
+  flex-shrink: 0;
+  font-size: var(--icon-size);
+  line-height: 1;
+  color: #e8e8ee;
+  transition: color .3s, filter .3s, transform .3s;
+}
+
+.container-contact a:hover i,
+.container-contact a:focus-visible i {
+  color: #dc2626;
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, .8));
+  transform: scale(1.12);
+}
+
+/* ---------- Footer: end credits ---------- */
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 48px 5vw 40px;
+  text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .85));
+}
+
+footer::before {
+  content: "";
+  display: block;
+  width: min(520px, 80%);
+  height: 1px;
+  margin: 0 auto 32px;
+  background: linear-gradient(90deg, transparent, #dc2626, #7c3aed, transparent);
+  box-shadow: 0 0 14px rgba(220, 38, 38, .6);
+}
+
+footer p {
+  margin-top: 8px;
+  font-size: .9rem;
+  line-height: 1.7;
+  color: #a1a1b0;
+}
+
+footer .footer-name {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .15em;
+  color: #e8e8ee;
+}
+
+footer .footer-status {
+  color: #dc2626;
+}
+
+.footer-top {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  text-decoration: none;
+  color: #a1a1b0;
+  transition: color .3s, text-shadow .3s;
+}
+
+.footer-top:hover,
+.footer-top:focus-visible {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(220, 38, 38, .7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container-contact a i {
+    transition: none;
+  }
+}
+
+@media (hover: hover) {
+  .container-contact a:hover i {
+    color: #dc2626;
+    filter: drop-shadow(0 0 8px rgba(220, 38, 38, .8));
+    transform: scale(1.12);
+  }
+}
+
+.container-contact a:focus-visible i {
+  color: #dc2626;
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, .8));
+}
+
+
+ 

@@ -1,0 +1,278 @@
+#project {
+ position: relative;
+  z-index: 1;
+  min-height: 100vh;
+ scroll-margin-top: 90px;}
+
+.container {
+    width:min (500px, 90%);
+    margin:auto;
+    margin-top:90px;
+    padding:20px;
+}
+
+.featured {font-size: clamp(1.25rem, 0.8rem + 2vw, 1.875rem);
+margin:20px;
+position: relative;
+font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+   text-transform: uppercase;
+  letter-spacing: .35em;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(220, 38, 38, .55);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .featured::after {
+      animation: flare linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+ 
+@keyframes flare {
+  from { transform: translateX(-50%) scaleX(0); opacity: 0; }
+  to   { transform: translateX(-50%) scaleX(1); opacity: 1; }
+}
+
+.case-study {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .03);
+  max-height:300px;
+  overflow:auto;
+  font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.case-study summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #fff;
+  transition: color .3s;
+  font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);
+}
+
+.case-study summary:hover {
+  color: #dc2626;
+}
+
+.case-content {
+  padding: 0 16px 16px;
+  color: #a1a1b0;
+  line-height: 1.8;
+  font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);
+}
+
+.open-modal,
+.modal-close {
+  cursor: pointer;
+  padding: 10px 18px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(220, 38, 38, .15);
+  border: 1px solid rgba(220, 38, 38, .6);
+  border-radius: 8px;
+  transition: box-shadow .3s, background .3s;
+  font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);
+}
+
+.open-modal:hover,
+.modal-close:hover {
+  background: rgba(220, 38, 38, .3);
+  box-shadow: 0 0 14px rgba(220, 38, 38, .6);
+}
+
+.modal {
+  width: min(900px, 92vw);
+  max-height: 85vh;
+  margin: auto;
+  padding: 24px;
+  overflow: auto;
+  color: #e8e8ee;
+  background: #0d0d14;
+  border: 1px solid rgba(220, 38, 38, .5);
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(220, 38, 38, .25);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, .7);
+  backdrop-filter: blur(4px);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  color: #fff;
+}
+
+.modal h3 {
+  color: #dc2626;
+  margin-top: 8px;
+}
+
+.modal h4 {
+  color: #fff;
+  margin-top: 16px;
+}
+
+.modal p {
+  margin-top: 6px;
+  line-height: 1.7;
+  color: #a1a1b0;
+}
+
+.modal pre {
+  margin-top: 10px;
+  padding: 16px;
+  max-height: 320px;
+  overflow: auto;
+  background: #050508;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 8px;
+}
+
+.modal code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .9rem;
+  color: #e8e8ee;
+}
+
+.kahon {padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));}
+
+.box1 {width:min(300px, 90%);
+background:black;
+min-height:500px;
+padding:20px;
+margin:0 auto;
+position: relative;
+  isolation: isolate;
+  overflow: hidden;
+   background: linear-gradient(180deg, rgba(18, 18, 24, .92), rgba(8, 8, 12, .96));
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 6px;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8), 0 0 0 1px rgba(0, 0, 0, .6);
+  transition: border-color .4s, box-shadow .4s;
+}
+
+.box1:hover {
+  border-color: rgba(220, 38, 38, .55);
+  box-shadow:
+    0 30px 80px -20px rgba(0, 0, 0, .9),
+    0 0 40px rgba(220, 38, 38, .18),
+    0 0 80px rgba(124, 58, 237, .12);
+}
+
+.box1::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 1;
+  aspect-ratio: 21 / 9;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, .65)),
+    linear-gradient(110deg, rgba(220, 38, 38, .22), transparent 45%, rgba(124, 58, 237, .26));
+}
+
+.box1::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+box1 > *:not(.picture) {
+  margin-inline: clamp(20px, 4vw, 32px);
+}
+
+.picture {width:min(260px, 100%);
+height:200px;
+display: block;
+aspect-ratio: 21 / 9;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-block: clamp(10px, 2.2vw, 20px) solid #000;
+  filter: saturate(.9) contrast(1.08);
+  transition: filter .6s;}
+
+  .box1:hover .picture {
+  filter: saturate(1.1) contrast(1.12);
+}
+
+
+h2 {font-size: clamp(1rem, 0.8rem + 1vw, 1.25rem);
+margin:10px;
+font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+text-transform: uppercase;
+  letter-spacing: -.01em;
+  color: #fff;
+  text-shadow: 0 0 24px rgba(220, 38, 38, .3);}
+
+p {margin:10px;
+  font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);
+  color: #a1a1b0;
+}
+
+.box1 > p:has(+ details) {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .85rem;
+  letter-spacing: .05em;
+  color: #a78bfa;
+}
+
+.picture + p {
+  margin-top: 22px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .2em;
+  color: #dc2626;
+  text-shadow: 0 0 12px rgba(220, 38, 38, .6);
+}
+
+.live {
+  cursor: pointer;
+  padding: 10px 18px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(220, 38, 38, .15);
+  border: 1px solid rgba(220, 38, 38, .6);
+  border-radius: 8px;
+  transition: box-shadow .3s, background .3s;
+  
+}
+
+.button {display:flex;
+flex-wrap:wrap;
+gap:10px;}
+
+a {text-decoration:none;
+color:white;
+font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);}
+
+.live:hover {
+  background: rgba(220, 38, 38, .3);
+  box-shadow: 0 0 14px rgba(220, 38, 38, .6);
+}
+
+@media (max-width:768px) {
+
+  .kahon {grid-template-columns:1fr;}
+  
+}
