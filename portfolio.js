@@ -22,3 +22,8 @@ links.forEach(haha => {
       document.getElementById(btn.dataset.modal).showModal();
     });
   });
+
+   const btn = document.getElementById("btn");
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("liwanag");
+    });
