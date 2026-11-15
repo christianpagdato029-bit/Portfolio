@@ -111,7 +111,7 @@ header::after {
   box-shadow: 0 0 12px rgba(220, 38, 38, .8);
 }
 
-.portfolio { font-family: 'Space Grotesk', sans-serif;
+header a { font-family: 'Space Grotesk', sans-serif;
  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .35em;
@@ -201,8 +201,8 @@ border-left: 2px solid rgba(220, 38, 38, .6);
  line-height: 1.8;
   color: #a1a1b0;}
 
-  .fronted {
-  --chars: 31;
+ .fronted {
+  --chars: 22;
   --full: calc(var(--chars) * (1ch + .2em));
   font-size: clamp(1.1rem, 2.5vw, 25px);
   font-family: 'JetBrains Mono', monospace;
@@ -224,9 +224,9 @@ border-left: 2px solid rgba(220, 38, 38, .6);
 }
 
 @keyframes typing {
-  0%   { width: 0;           animation-timing-function: steps(31, end); }
+  0%   { width: 0;           animation-timing-function: steps(22, end); }
   40%  { width: var(--full); animation-timing-function: step-end; }
-  50%  { width: var(--full); animation-timing-function: steps(31, end); }
+  50%  { width: var(--full); animation-timing-function: steps(22, end); }
   90%  { width: 0; }
   100% { width: 0; }
 }

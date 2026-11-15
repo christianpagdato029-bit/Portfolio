@@ -27,3 +27,5 @@ links.forEach(haha => {
     btn.addEventListener("click", () => {
       document.body.classList.toggle("liwanag");
     });
+
+   
