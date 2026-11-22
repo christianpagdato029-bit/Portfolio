@@ -5,12 +5,15 @@
  scroll-margin-top: 90px;}
 
 .container {
-    width:min (500px, 90%);
+    /* width: min(500px, 90%);
+       ^ dati: "min (" na may space kaya hindi gumagana. Inalis ko para
+         hindi magbago ang layout ng cards mo. */
     margin:auto;
     margin-top:90px;
     padding:20px;
 }
 
+/* ---------- Pamagat ng section + light streak ---------- */
 .featured {font-size: clamp(1.25rem, 0.8rem + 2vw, 1.875rem);
 margin:20px;
 position: relative;
@@ -20,6 +23,20 @@ font-family: 'Space Grotesk', sans-serif;
   letter-spacing: .35em;
   color: #fff;
   text-shadow: 0 0 30px rgba(220, 38, 38, .55);
+}
+
+/* anamorphic streak sa ilalim ng pamagat (dati walang laman ang ::after) */
+.featured::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 100%;
+  height: 2px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #dc2626 30%, #7c3aed 70%, transparent);
+  box-shadow: 0 0 16px rgba(220, 38, 38, .75), 0 0 44px rgba(124, 58, 237, .45);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -33,15 +50,18 @@ font-family: 'Space Grotesk', sans-serif;
 }
  
 @keyframes flare {
-  from { transform: translateX(-50%) scaleX(0); opacity: 0; }
-  to   { transform: translateX(-50%) scaleX(1); opacity: 1; }
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
 }
 
+/* ---------- Case study ---------- */
 .case-study {
   border-radius: 8px;
-  background: rgba(255, 255, 255, .03);
+  background: rgba(255, 255, 255, .025);
   max-height:300px;
   overflow:auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(220, 38, 38, .6) transparent;
   font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);
   border-top: 1px solid rgba(255, 255, 255, .08);
 }
@@ -66,6 +86,7 @@ font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);
 }
 
+/* ---------- Mga button ---------- */
 .open-modal,
 .modal-close {
   cursor: pointer;
@@ -85,6 +106,14 @@ font-family: 'Space Grotesk', sans-serif;
   box-shadow: 0 0 14px rgba(220, 38, 38, .6);
 }
 
+.open-modal:focus-visible,
+.modal-close:focus-visible,
+.live:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 3px;
+}
+
+/* ---------- Modal ng Source Code ---------- */
 .modal {
   width: min(900px, 92vw);
   max-height: 85vh;
@@ -92,15 +121,15 @@ font-family: 'Space Grotesk', sans-serif;
   padding: 24px;
   overflow: auto;
   color: #e8e8ee;
-  background: #0d0d14;
+  background: linear-gradient(180deg, #0c0c12, #020203);
   border: 1px solid rgba(220, 38, 38, .5);
   border-radius: 16px;
-  box-shadow: 0 0 40px rgba(220, 38, 38, .25);
+  box-shadow: 0 0 60px rgba(220, 38, 38, .22), 0 40px 90px rgba(0, 0, 0, .85);
 }
 
 .modal::backdrop {
-  background: rgba(0, 0, 0, .7);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, .85);
+  backdrop-filter: blur(6px);
 }
 
 .modal-header {
@@ -137,7 +166,7 @@ font-family: 'Space Grotesk', sans-serif;
   padding: 16px;
   max-height: 320px;
   overflow: auto;
-  background: #050508;
+  background: #000;
   border: 1px solid rgba(255, 255, 255, .1);
   border-radius: 8px;
 }
@@ -148,33 +177,35 @@ font-family: 'Space Grotesk', sans-serif;
   color: #e8e8ee;
 }
 
+/* ---------- Project cards: parang frame ng pelikula ---------- */
 .kahon {padding:20px;
 display:grid;
-grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));}
+grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+}
 
 .box1 {width:min(300px, 90%);
-background:black;
 min-height:500px;
 padding:20px;
 margin:0 auto;
 position: relative;
   isolation: isolate;
   overflow: hidden;
-   background: linear-gradient(180deg, rgba(18, 18, 24, .92), rgba(8, 8, 12, .96));
-  border: 1px solid rgba(255, 255, 255, .08);
+  background: linear-gradient(180deg, #11111a, #060609);
+  border: 1px solid rgba(255, 255, 255, .07);
   border-radius: 6px;
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8), 0 0 0 1px rgba(0, 0, 0, .6);
+  box-shadow: 0 30px 60px -20px #000, 0 0 0 1px #000;
   transition: border-color .4s, box-shadow .4s;
 }
 
 .box1:hover {
   border-color: rgba(220, 38, 38, .55);
   box-shadow:
-    0 30px 80px -20px rgba(0, 0, 0, .9),
+    0 30px 80px -20px #000,
     0 0 40px rgba(220, 38, 38, .18),
     0 0 80px rgba(124, 58, 237, .12);
 }
 
+/* vignette + light leak sa ibabaw ng larawan */
 .box1::before {
   content: "";
   position: absolute;
@@ -183,24 +214,14 @@ position: relative;
   aspect-ratio: 21 / 9;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, .65)),
+    radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, .7)),
     linear-gradient(110deg, rgba(220, 38, 38, .22), transparent 45%, rgba(124, 58, 237, .26));
 }
 
-.box1::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: .09;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
+/* Inalis: .box1::after (grain). Global na ang grain sa home.css */
 
-box1 > *:not(.picture) {
-  margin-inline: clamp(20px, 4vw, 32px);
-}
+/* Inalis: "box1 > *:not(.picture)" — kulang ng tuldok kaya wala itong epekto.
+   Kapag ginawang ".box1 > ..." liliit ang laman ng cards, kaya hindi ko ginalaw. */
 
 .picture {width:min(260px, 100%);
 height:200px;
@@ -275,4 +296,9 @@ font-size: clamp(0.75rem, 0.6rem + 1vw, 0.9375rem);}
 
   .kahon {grid-template-columns:1fr;}
   
+}
+
+
+body.liwanag .featured::after {
+  box-shadow: 0 0 10px rgba(220, 38, 38, .3);
 }

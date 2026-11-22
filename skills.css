@@ -1,11 +1,13 @@
+
+
 #skills {
  position: relative;
   z-index: 1;
   min-height: 100vh;
  scroll-margin-top: 90px;}
 
+/* ---------- Pamagat + light streak ---------- */
 .skills {font-size: clamp(1.25rem, 0.8rem + 2vw, 1.875rem);
-margin:auto;
 margin:20px;
 position: relative;
 font-family: 'Space Grotesk', sans-serif;
@@ -16,59 +18,154 @@ font-family: 'Space Grotesk', sans-serif;
   text-shadow: 0 0 30px rgba(220, 38, 38, .55);
 }
 
+/* anamorphic streak sa ilalim ng pamagat */
+.skills::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 100%;
+  height: 2px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #dc2626 30%, #7c3aed 70%, transparent);
+  box-shadow: 0 0 16px rgba(220, 38, 38, .75), 0 0 44px rgba(124, 58, 237, .45);
+}
+
+/* dati ".featured::after" ang nakalagay dito, kaya hindi gumagalaw ang SKILLS */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-    .featured::after {
-      animation: flare linear both;
+    .skills::after {
+      animation: skillsFlare linear both;
       animation-timeline: view();
       animation-range: entry 10% cover 35%;
     }
   }
 }
  
-@keyframes flare {
-  from { transform: translateX(-50%) scaleX(0); opacity: 0; }
-  to   { transform: translateX(-50%) scaleX(1); opacity: 1; }
+@keyframes skillsFlare {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
 }
 
+/* ---------- Grid ---------- */
+/* Dati: grid-template-columns:repear(auto-fit, minmax(500px, 1fr));
+   May typo ("repear") kaya hindi ito gumana. Galing na sa project.css ang
+   grid ng .kahon. Kapag ginawa kong "repeat(... 500px ...)" masisira ang
+   project cards mo (iisa ang class), kaya inalis ko. */
 .kahon {display:grid;
-grid-template-columns:repear(auto-fit, minmax(500px, 1fr));
 margin:auto;
 gap:20px;
 }
 
-.kahon1 {margin:auto;
-background:black;
-width:min(310px, 90%);
-padding:20px;}
-
 i {display:flex;
 justify-content:center;}
 
-.html {text-align:center;
-font-size: clamp(1.5rem, 4vw, 30px);}
+/* ---------- Skill cards: letterboxed na frame ---------- */
+.kahon1,
+.kahon2,
+.kahon3 {
+  margin: auto;
+  width: min(310px, 90%);
+  padding: 20px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(180deg, #11111a, #060609);
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-block: clamp(8px, 1.6vw, 14px) solid #000;   /* letterbox bars */
+  border-radius: 6px;
+  box-shadow: 0 30px 60px -20px #000, 0 0 0 1px #000;
+  transition: border-color .4s, box-shadow .4s;
+}
 
-.kahon1 li {font-size: clamp(14px, 3vw, 20px);
-margin:20px;}
+.kahon1:hover,
+.kahon2:hover,
+.kahon3:hover {
+  border-inline-color: rgba(220, 38, 38, .55);   /* gilid lang, para hindi mamula ang letterbox */
+  box-shadow:
+    0 30px 80px -20px #000,
+    0 0 40px rgba(220, 38, 38, .18),
+    0 0 80px rgba(124, 58, 237, .12);
+}
 
-.kahon2 {margin:auto;
-background:black;
-width:min(310px, 90%);
-padding:20px;}
+/* vignette + light leak */
+.kahon1::before,
+.kahon2::before,
+.kahon3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, .55)),
+    linear-gradient(110deg, rgba(220, 38, 38, .12), transparent 45%, rgba(124, 58, 237, .14));
+}
 
-.css {text-align:center;
-font-size: clamp(1.5rem, 4vw, 30px);}
+/* mga icon: mahinang pulang ilaw */
+.kahon1 i,
+.kahon2 i,
+.kahon3 i {
+  filter: drop-shadow(0 0 10px rgba(220, 38, 38, .5));
+}
 
-.kahon2 li {font-size: clamp(14px, 3vw, 20px);
-margin:20px;}
+/* ---------- Mga pamagat ng card ---------- */
+.html,
+.css,
+.javascript {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 30px);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
 
-.kahon3 {margin:auto;
-background:black;
-width:min(310px, 90%);
-padding:20px;}
+/* ---------- Mga listahan ---------- */
+.kahon1 li,
+.kahon2 li,
+.kahon3 li {
+  font-size: clamp(14px, 3vw, 20px);
+  margin: 20px;
+}
 
-.javascript {text-align:center;
-font-size: clamp(1.5rem, 4vw, 30px);}
+.kahon1 li::marker,
+.kahon2 li::marker,
+.kahon3 li::marker {
+  color: #dc2626;
+}
 
-.kahon3 li {font-size: clamp(14px, 3vw, 20px);
-margin:20px;}
+/* =========================================================
+   DAGDAG PARA SA LIGHT MODE (body.liwanag)
+   Ang puting background at ang mga umiiral na light rules sa
+   home.css ay HINDI ginalaw. Ito ay para lang magkasya ang
+   bagong letterbox, vignette at hover sa puting tema.
+   ========================================================= */
+body.liwanag .skills::after {
+  box-shadow: 0 0 10px rgba(220, 38, 38, .3);
+}
+
+/* letterbox bars: madilim para kita sa puti (kapareho ng About) */
+body.liwanag #skills .kahon1,
+body.liwanag #skills .kahon2,
+body.liwanag #skills .kahon3 {
+  border-block: clamp(8px, 1.6vw, 14px) solid #14141c;
+}
+
+body.liwanag #skills .kahon1::before,
+body.liwanag #skills .kahon2::before,
+body.liwanag #skills .kahon3::before {
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .06)),
+    linear-gradient(110deg, rgba(220, 38, 38, .07), transparent 45%, rgba(124, 58, 237, .08));
+}
+
+body.liwanag #skills .kahon1:hover,
+body.liwanag #skills .kahon2:hover,
+body.liwanag #skills .kahon3:hover {
+  border-inline-color: rgba(220, 38, 38, .5);
+  box-shadow:
+    0 30px 60px -20px rgba(20, 20, 40, .35),
+    0 0 30px rgba(220, 38, 38, .15),
+    0 0 60px rgba(124, 58, 237, .10);
+}

@@ -1,3 +1,10 @@
+/* =========================================================
+   home.css — CINEMATIC BLACK
+   Base · header · hero · responsive · light mode · toggle
+   Ang LIGHT MODE section ay HINDI ginalaw.
+   May "DAGDAG" lang sa pinakadulo para sa mga bagong design.
+   ========================================================= */
+
 * {padding:0;
 margin:0;
 box-sizing:border-box;}
@@ -19,26 +26,38 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ---------- Background: itim, may bahagyang pula/violet na ilaw ---------- */
 body {
   background:
-    radial-gradient(ellipse at 15% 0%, rgba(220, 38, 38, .28), transparent 55%),
-    radial-gradient(ellipse at 85% 100%, rgba(124, 58, 237, .25), transparent 55%),
-    linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px) 0 0 / 40px 40px,
-    linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px) 0 0 / 40px 40px,
-    #07070a;
+    radial-gradient(ellipse 70% 50% at 12% 0%, rgba(220, 38, 38, .14), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(124, 58, 237, .13), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px) 0 0 / 48px 48px,
+    #000;
   background-attachment: fixed;
   color: #e8e8ee;
-   font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-
+/* Vignette: madilim sa gilid, parang lente ng camera */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, .7));
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, .88));
+}
+
+/* Film grain: isang beses lang para sa buong page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
 }
 
 .menu-toggle {
@@ -96,8 +115,8 @@ header {display:flex;
   position:sticky;
   top:0;
   z-index:100;
-   background: linear-gradient(180deg, rgba(0, 0, 0, .95), rgba(7, 7, 10, .75));
-  backdrop-filter: blur(12px);
+  background: linear-gradient(180deg, rgba(0, 0, 0, .97), rgba(0, 0, 0, .72));
+  backdrop-filter: blur(14px);
 }
 
 header::after {
@@ -155,6 +174,13 @@ nav a:hover::after {
   left: 0;
 }
 
+/* para sa keyboard users */
+header a:focus-visible,
+nav a:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 6px;
+}
+
 #home  {
  position: relative;
   z-index: 1;
@@ -170,7 +196,7 @@ nav a:hover::after {
   height: 120%;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse at 50% 30%, rgba(220, 38, 38, .22), rgba(124, 58, 237, .12) 40%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 30%, rgba(220, 38, 38, .2), rgba(124, 58, 237, .1) 40%, transparent 70%);
   filter: blur(20px);
 }
 
@@ -651,19 +677,18 @@ body.liwanag .footer-top:focus-visible {
 
 /* ---------- 12. Ang toggle button mismo (I-on / I-off) ---------- */
 #btn {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
   z-index: 200;
-  padding: 10px 18px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .8rem;
-  text-transform: uppercase;
-  letter-spacing: .12em;
+  display: inline-flex;          /* bilog na icon button */
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  font-size: 0;                  /* nakatago ang text na "I-on / I-off"; icon na ang makikita */
   color: #fff;
   background: rgba(7, 7, 10, .85);
   border: 1px solid rgba(220, 38, 38, .6);
-  border-radius: 999px;
+  border-radius: 50%;
   backdrop-filter: blur(8px);
   cursor: pointer;
   transition: box-shadow .3s, background .3s, color .3s;
@@ -684,4 +709,89 @@ body.liwanag #btn {
 body.liwanag #btn:hover,
 body.liwanag #btn:focus-visible {
   box-shadow: 0 0 16px rgba(220, 38, 38, .45), 0 6px 20px rgba(20, 20, 40, .18);
+}
+
+.resume {display:flex;
+justify-content:center;}
+
+.btn {
+  z-index: 200;
+  padding: 10px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #fff;
+  background: rgba(7, 7, 10, .85);
+  border: 1px solid rgba(220, 38, 38, .6);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: box-shadow .3s, background .3s, color .3s;
+  margin:auto;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  box-shadow: 0 0 16px rgba(220, 38, 38, .6);
+  outline: none;
+}
+
+/* =========================================================
+   DAGDAG PARA SA LIGHT MODE
+   (para lang sa mga bagong design sa dark — walang ginalaw sa taas)
+   ========================================================= */
+
+/* mas manipis ang film grain sa puting background */
+body.liwanag::after {
+  opacity: .035;
+}
+
+/* Resume button (.btn): kapareho ng #btn para mabasa sa puti */
+body.liwanag .btn {
+  color: #14141c;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 6px 20px rgba(20, 20, 40, .18);
+}
+
+body.liwanag .btn:hover,
+body.liwanag .btn:focus-visible {
+  box-shadow: 0 0 16px rgba(220, 38, 38, .45), 0 6px 20px rgba(20, 20, 40, .18);
+}
+
+/* =========================================================
+   TOGGLE BUTTON — SUN / MOON ICON
+   Dark mode = sun (pindutin para maging white)
+   White mode (body.liwanag) = moon (pindutin para bumalik sa dark)
+   Walang kailangang baguhin sa JS: ang class na "liwanag" ang nagpapalit.
+   ========================================================= */
+#btn::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;   /* sumusunod sa kulay ng button */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* white mode: buwan */
+body.liwanag #btn::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E");
+}
+
+/* maikling ikot at fade tuwing nagpapalit ng icon (patay kung naka-reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  #btn::before { animation: iconSwapA .45s ease; }
+  body.liwanag #btn::before { animation: iconSwapB .45s ease; }
+}
+
+@keyframes iconSwapA {
+  from { transform: rotate(-90deg) scale(.4); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+@keyframes iconSwapB {
+  from { transform: rotate(-90deg) scale(.4); opacity: 0; }
+  to   { transform: none; opacity: 1; }
 }
